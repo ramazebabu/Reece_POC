@@ -1,0 +1,2 @@
+oauth2 folder contains the first module which is based on google authentication 
+demo folder contains the second module which is multidatasource persitance and schema management using liquibase dependency
