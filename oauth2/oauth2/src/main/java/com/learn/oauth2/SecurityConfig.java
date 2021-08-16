@@ -15,9 +15,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .oauth2Login()
+                .and()
                 .logout().invalidateHttpSession(true)
-                .clearAuthentication(true).logoutSuccessUrl("/signOut").deleteCookies("JSESSIONID").permitAll().and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and().oauth2Login();
+                .clearAuthentication(true).logoutSuccessUrl("/signOut").deleteCookies("JSESSIONID").permitAll().and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
 }
