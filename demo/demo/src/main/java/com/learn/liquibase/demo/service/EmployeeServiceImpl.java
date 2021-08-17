@@ -13,8 +13,13 @@ import java.util.Optional;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    @Autowired
+
     private EmployeeRepo repo;
+
+    @Autowired
+    public EmployeeServiceImpl(EmployeeRepo repo) {
+        this.repo = repo;
+    }
 
     @Override
     public String addProfile(Employee employee) throws UserExistsException {

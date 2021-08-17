@@ -12,8 +12,12 @@ import reactor.core.publisher.Mono;
 @Service
 public class EmployeeService {
 
-    @Autowired
     private EmployeeRepo repo;
+
+    @Autowired
+    public EmployeeService(EmployeeRepo repo) {
+        this.repo = repo;
+    }
 
     public Flux<EmployeeDto> getAllProfiles(){
         return repo.findAll().map(AppUtils::entityToDto);

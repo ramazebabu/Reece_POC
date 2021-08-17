@@ -11,8 +11,12 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-    @Autowired
     private EmployeeService service;
+
+    @Autowired
+    public EmployeeController(EmployeeService service) {
+        this.service = service;
+    }
 
     @GetMapping("/profile")
     public Flux<EmployeeDto> getAllProfiles(){

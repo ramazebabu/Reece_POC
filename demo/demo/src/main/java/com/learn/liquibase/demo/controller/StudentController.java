@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/v1/student")
 public class StudentController {
 
-    @Autowired
+
     private StudentService service;
+
+    @Autowired
+    public StudentController(StudentService service) {
+        this.service = service;
+    }
 
     @PostMapping("addProfile")
     public ResponseEntity<?> addProfile(@RequestBody Student student){
