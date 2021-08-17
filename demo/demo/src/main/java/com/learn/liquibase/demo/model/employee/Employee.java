@@ -1,6 +1,7 @@
 package com.learn.liquibase.demo.model.employee;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +30,7 @@ public class Employee {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "email")
+    @Column(name = "email",nullable = false)
     private String email;
 
     @Column(name = "emp_address")
