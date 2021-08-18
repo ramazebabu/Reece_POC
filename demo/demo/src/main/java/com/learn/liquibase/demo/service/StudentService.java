@@ -10,8 +10,8 @@ import java.util.List;
 public interface StudentService {
 
     List<Student> allProfiles();
-    String addProfile(Student student) throws UserExistsException;
-    void updateProfile(Student student) throws UserNotFoundException;
+    Student addProfile(Student student) throws UserExistsException;
+    Student updateProfile(Student student) throws UserNotFoundException;
     String deleteProfile(String email) throws UserNotFoundException;
 
 }

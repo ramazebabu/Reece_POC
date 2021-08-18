@@ -26,16 +26,16 @@ public class StudentServiceImpl implements StudentService{
     }
 
     @Override
-    public String addProfile(Student student) throws UserExistsException {
+    public Student addProfile(Student student) throws UserExistsException {
         if(repo.existsByEmail(student.getEmail())){
             throw new UserExistsException("Profile Already exists With Email");
         }
         Student savedProfile = repo.save(student);
-        return savedProfile.getName();
+        return savedProfile;
     }
 
     @Override
-    public void updateProfile(Student student) throws UserNotFoundException {
+    public Student updateProfile(Student student) throws UserNotFoundException {
         Optional<Student> byEmail = repo.findByEmail(student.getEmail());
         if(byEmail.isPresent()){
             Student stud = repo.findByEmail(student.getEmail()).get();
@@ -44,7 +44,8 @@ public class StudentServiceImpl implements StudentService{
             stud.setDob(student.getDob());
             stud.setGender(student.getGender());
             stud.setGroup(student.getGroup());
-            repo.save(stud);
+            Student save = repo.save(stud);
+            return save;
         }
         else{
             throw new UserNotFoundException("Profile Not Found");

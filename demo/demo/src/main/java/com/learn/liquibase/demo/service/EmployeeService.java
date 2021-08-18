@@ -8,8 +8,8 @@ import java.util.List;
 public interface EmployeeService {
 
     List<Employee> allProfiles();
-    String addProfile(Employee employee) throws UserExistsException;
-    void updateProfile(Employee employee) throws UserNotFoundException;
+    Employee addProfile(Employee employee) throws UserExistsException;
+    Employee updateProfile(Employee employee) throws UserNotFoundException;
     String deleteProfile(String email) throws UserNotFoundException;
 
 }

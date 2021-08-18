@@ -22,16 +22,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public String addProfile(Employee employee) throws UserExistsException {
+    public Employee addProfile(Employee employee) throws UserExistsException {
         if(repo.existsByEmail(employee.getEmail())){
             throw new UserExistsException("Profile Already exists With Email");
         }
         Employee savedProfile = repo.save(employee);
-        return savedProfile.getName();
+        return savedProfile;
     }
 
     @Override
-    public void updateProfile(Employee employee) throws UserNotFoundException {
+    public Employee updateProfile(Employee employee) throws UserNotFoundException {
         Optional<Employee> byEmail = repo.findByEmail(employee.getEmail());
         if(byEmail.isPresent()){
             Employee employee1 = repo.findByEmail(employee.getEmail()).get();
@@ -40,7 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
             employee1.setDob(employee.getDob());
             employee1.setGender(employee.getGender());
             employee1.setRole(employee.getRole());
-            repo.save(employee1);
+            Employee save = repo.save(employee1);
+            return save;
         }
         else{
             throw new UserNotFoundException("Profile Not Found");
