@@ -24,7 +24,7 @@ public class Student {
     @Column(name = "stud_gender")
     private String gender;
 
-    @Column(name = "stud_email",nullable = false)
+    @Column(name = "stud_email")
     private String email;
 
     @Column(name = "stud_dob")

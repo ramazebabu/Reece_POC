@@ -30,7 +30,7 @@ public class Employee {
     @Column(name = "role")
     private String role;
 
-    @Column(name = "email",nullable = false)
+    @Column(name = "email")
     private String email;
 
     @Column(name = "emp_address")

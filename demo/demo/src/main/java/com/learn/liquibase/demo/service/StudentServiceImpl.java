@@ -1,5 +1,6 @@
 package com.learn.liquibase.demo.service;
 
+import com.learn.liquibase.demo.exception.EmptyEmailException;
 import com.learn.liquibase.demo.exception.UserExistsException;
 import com.learn.liquibase.demo.exception.UserNotFoundException;
 import com.learn.liquibase.demo.model.student.Student;
@@ -27,11 +28,16 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student addProfile(Student student) throws UserExistsException {
-        if(repo.existsByEmail(student.getEmail())){
-            throw new UserExistsException("Profile Already exists With Email");
+        if (student.getEmail()==null){
+            throw new EmptyEmailException("Please Provide EmailID");
         }
-        Student savedProfile = repo.save(student);
-        return savedProfile;
+        else {
+            if(repo.existsByEmail(student.getEmail())){
+                throw new UserExistsException("Profile Already exists With Email");
+            }
+            Student savedProfile = repo.save(student);
+            return savedProfile;
+        }
     }
 
     @Override

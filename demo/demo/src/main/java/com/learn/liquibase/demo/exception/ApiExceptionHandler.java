@@ -17,4 +17,9 @@ public class ApiExceptionHandler {
     public ResponseEntity<?> userNotFoundException(UserNotFoundException e){
         return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(EmptyEmailException.class)
+    public ResponseEntity<?> emptyEmailException(EmptyEmailException e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.FORBIDDEN);
+    }
 }
